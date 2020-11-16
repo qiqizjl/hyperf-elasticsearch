@@ -4,7 +4,10 @@ namespace NaiXiaoXin\Hyperf\Elasticsearch;
 
 
 use Hyperf\Contract\ConfigInterface;
+use Hyperf\Contract\LengthAwarePaginatorInterface;
 use Hyperf\Utils\ApplicationContext;
+use Hyperf\Utils\Contracts\Arrayable;
+use Hyperf\Utils\Contracts\Jsonable;
 use Hyperf\Utils\Str;
 use Psr\Container\ContainerInterface;
 
@@ -14,7 +17,7 @@ use Psr\Container\ContainerInterface;
  *
  * @package NaiXiaoXin\Hyperf\Elasticsearch
  */
-class Model
+class Model implements Arrayable,Jsonable,\JsonSerializable
 {
 
     /**
@@ -55,7 +58,6 @@ class Model
 
     /**
      * Attribute data type
-     * @available boolean, bool, integer, int, float, double, string, array, object, null
      * @var array
      */
     protected $casts = [];
@@ -281,7 +283,7 @@ class Model
      * Get model as array
      * @return array
      */
-    public function toArray()
+    public function toArray():array
     {
 
         $attributes = [];
@@ -304,9 +306,26 @@ class Model
      * @param int $options
      * @return string
      */
-    public function toJson($options = 0)
+    public function toJson($options = 0):string
     {
         return json_encode($this->toArray(), $options);
+    }
+
+
+
+    /**
+     * Convert the object into something JSON serializable.
+     *
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        return $this->toArray();
+    }
+    
+    public function __toString():string
+    {
+        return $this->toJson();
     }
 
     /**

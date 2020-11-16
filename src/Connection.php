@@ -112,7 +112,6 @@ class Connection
         if (array_key_exists($name, $this->config["connections"])) {
 
             $config = $this->config["connections"][$name];
-
             // Instantiate a new ClientBuilder
             $clientBuilder = ClientBuilder::create();
 

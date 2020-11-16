@@ -3,6 +3,7 @@
 namespace NaiXiaoXin\Hyperf\Elasticsearch;
 
 use Hyperf\Paginator\LengthAwarePaginator;
+use Hyperf\Paginator\Paginator;
 use Hyperf\Utils\Collection;
 use NaiXiaoXin\Hyperf\Elasticsearch\Classes\Bulk;
 use NaiXiaoXin\Hyperf\Elasticsearch\Classes\Search;
@@ -1165,11 +1166,10 @@ class Query
      * Paginate collection of results
      *
      * @param int  $per_page
-     * @param      $page_name
      * @param null $page
      * @return LengthAwarePaginator
      */
-    public function paginate($per_page = 10, $page_name = "page", $page = null)
+    public function paginate($per_page = 10,  $page = null)
     {
 
         $this->take($per_page);
