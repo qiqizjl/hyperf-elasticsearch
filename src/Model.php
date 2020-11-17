@@ -6,6 +6,7 @@ namespace NaiXiaoXin\Hyperf\Elasticsearch;
 use Hyperf\Contract\ConfigInterface;
 use Hyperf\Contract\LengthAwarePaginatorInterface;
 use Hyperf\Utils\ApplicationContext;
+use Hyperf\Utils\Arr;
 use Hyperf\Utils\Contracts\Arrayable;
 use Hyperf\Utils\Contracts\Jsonable;
 use Hyperf\Utils\Str;
@@ -433,7 +434,8 @@ class Model implements Arrayable,Jsonable,\JsonSerializable
     public function save()
     {
 
-        $fields = array_except($this->attributes, ["_index", "_type", "_id", "_score"]);
+
+        $fields = Arr::except(($this->attributes, ["_index", "_type", "_id", "_score"]);
 
         if ($this->exists()) {
 
