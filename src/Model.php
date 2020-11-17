@@ -435,7 +435,7 @@ class Model implements Arrayable,Jsonable,\JsonSerializable
     {
 
 
-        $fields = Arr::except(($this->attributes, ["_index", "_type", "_id", "_score"]);
+        $fields = Arr::except($this->attributes, ["_index", "_type", "_id", "_score"]);
 
         if ($this->exists()) {
 
