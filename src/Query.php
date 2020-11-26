@@ -847,7 +847,7 @@ class Query
             $body["query"]["bool"]["filter"] = $this->filter;
         }
 
-        if (count($body["query"]) == 0) {
+        if (isset($body["query"])  && count($body["query"]) == 0) {
             unset($body["query"]);
         }
 
